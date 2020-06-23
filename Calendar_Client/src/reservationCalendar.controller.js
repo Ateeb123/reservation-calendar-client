@@ -1,14 +1,27 @@
 angular
-    .module("reservationCalendar",["basicInformationService"] )
-    .controller("calendarController",["basicInfo",calendarController])
+    .module("reservationCalendar",["basicInformationService","apiModule"] )
+    .controller("calendarController",["basicInfo","apiService",calendarController])
     
 
-function calendarController(basicInfo)
+function calendarController(basicInfo, apiService)
 {
     let viewModel = this;
     viewModel.checker = "123";
     viewModel.days = basicInfo.allDays;
     viewModel.daysLayout = 7;
-    console.log(viewModel.daysLayout)
-    
+    viewModel.getCurrentTime = apiService.fetchCurrentServerTime();
+    console.log(viewModel.getCurrentTime);
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
