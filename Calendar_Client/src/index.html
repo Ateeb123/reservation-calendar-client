@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="reservationCalendar">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -16,54 +16,37 @@
         <hr />
         <!-- Optional JavaScript -->
     </div>
-
-    <div class="card" style="width: 90%; margin-left: 4.2%; ">
-        <div class="card-group" >
-            <div class="card" style="background-color: lightgrey; align-items: center;">
-                <div class="card-body">
-                  <h5 class="card-text">Sun</h5>
-                </div>
-              </div>
-              <div class="card" style="background-color: lightgrey; align-items: center;">
-                <div class="card-body">
-                    <h5 class="card-text">Mon</h5>
-                </div>
-              </div>
-              <div class="card" style="background-color: lightgrey; align-items: center;">
-                <div class="card-body">
-                    <h5 class="card-text">Tue</h5>
-                </div>
-              </div>
-              <div class="card" style="background-color: lightgrey; align-items: center;">
-                <div class="card-body">
-                    <h5 class="card-text">Wed</h5>
-                </div>
-              </div>
-              <div class="card" style="background-color: lightgrey; align-items: center;">
-                <div class="card-body">
-                    <h5 class="card-text">Thu</h5>
-                </div>
-              </div>
-              <div class="card" style="background-color: lightgrey; align-items: center;">
-                <div class="card-body">
-                    <h5 class="card-text">Fri</h5>
-                </div>
-              </div>
-              <div class="card" style="background-color: lightgrey; align-items: center;">
-                <div class="card-body">
-                    <h5 class="card-text">Sat</h5>
-                </div>
-              </div>
+    <div  ng-controller="calendarController as calendar">
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example" >
+              <button type="button" class="btn btn-info">Move Left</button>
+              <button type="button" class="btn btn-secondary" disabled>Jan 2020</button>
+              <button type="button" class="btn btn-info">Move Right</button>
+            </div>          
           </div>
+        </div>
+      </div>  
+      <hr />
+    <div class="card" style="width: 90%; margin-left: 4.2%;" >
+        <div class="card-group">
+            <div class="card" style="background-color: lightgrey; align-items: center;" ng-repeat="eachDay in calendar.days">
+                <div class="card-body">
+                  <h5 class="card-text">{{eachDay}}</h5>
+                </div>
+              </div>
+
+        </div>
         
-        <div class="card-group border-primary" style="display: flex; flex-wrap: wrap;">
-            <div class="card" style="flex: 1 0 13%;">
+        <div class="card-group border-primary" style="display: flex; flex-wrap: wrap;" >
+            <div class="card" style="flex: 1 0 13%;" ng-repeat="i in range(1,3)">
                 <div class="card-body">
                 <h6 class="card-title">30</h6>
                 <p class="card-text">Booked By: Ateeb Ahmed </p>
               </div>
             </div>
-            <div class="card" style="flex: 1 0 13%;">
+            <!-- <div class="card" style="flex: 1 0 13%;">
                 <div class="card-body">
                 <h5 class="card-title">30</h5>
                 <p class="card-text">Booked By: Ateeb Ahmed</p>
@@ -111,12 +94,12 @@
                     <p class="card-text">Booked By: Ateeb Ahmed</p>
                 </div>
               </div>
-        
+         -->
         </div>
 
             
     </div>
-        
+    </div>
         
     </div>    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   </body>
@@ -124,6 +107,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.14/angular.min.js"></script>
+    <script src="reservationCalendar.module.js"></script>
+    <script src="reservationCalendar.controller.js"></script>
+    <script src="reservationCalendar.factory.js"></script>
   </footer>
 </html>
