@@ -31,7 +31,7 @@
       <hr />
     <div class="card" style="width: 90%; margin-left: 4.2%;" >
         <div class="card-group">
-            <div class="card" style="background-color: lightgrey; align-items: center;" ng-repeat="eachDay in calendar.days">
+            <div class="card"  ng-repeat="eachDay in calendar.days">
                 <div class="card-body">
                   <h5 class="card-text">{{eachDay}}</h5>
                 </div>
@@ -40,10 +40,10 @@
         </div>
         
         <div class="card-group border-primary" style="display: flex; flex-wrap: wrap;" >
-            <div class="card" style="flex: 1 0 13%;" ng-repeat="i in range(1,3)">
-                <div class="card-body">
-                <h6 class="card-title">30</h6>
-                <p class="card-text">Booked By: Ateeb Ahmed </p>
+            <div class="card" style="flex: 1 0 13%;" ng-repeat="eachDate in calendar.dateAndPostings" >
+                <div class="card-body" style="background-color: {{eachDate.color}};">
+                <h6 class="card-title" style="text-align: center;">{{eachDate.date}}</h6>
+                <p class="card-text" style="text-align: center;">Booked - {{eachDate.tenant}} </p>
               </div>
             </div>
             <!-- <div class="card" style="flex: 1 0 13%;">
@@ -102,6 +102,7 @@
     </div>
         
     </div>    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <hr />
   </body>
   <footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

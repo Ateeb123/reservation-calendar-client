@@ -1,45 +1,24 @@
 angular
-    .module("apiModule",[])
-    .factory("apiService",apiService)
+    .module("apiModule", [])
+    .factory("apiService", apiService);
 
+function apiService() {
 
-function apiService()
-{
-    
-    async function fetchCurrentServerTime()
-    {
-        try {
-            const response = await fetch(
-              `http://localhost:3000/now`,
-              {
-                  method: "GET",
-              }
-            );
-        
-            if (response.status === 200) {
-                const jsonResponse = await response.json();
-                console.log(jsonResponse);
-            //   onSearchSuccess(jsonResponse);
-            } else {
-                const jsonResponse = await response.json();
-                //   onSearchFail(jsonResponse.message)
-                console.log(jsonResponse);
-            }
-        }
-          catch(e)
-          {
-            console.log(e.message)
-          }    
-    
-    }
+    function fetchCurrentServerTime() {
 
-    return(
+        return fetch(`http://localhost:3000/now`, {
+        method: "GET",
+        })
+        .then((response)=>
         {
-            fetchCurrentServerTime: fetchCurrentServerTime
-        }
-    
-    );
+            return response.json();
+        })
+        
+        ;
+
+};
+
+  return {
+    fetchCurrentServerTime: fetchCurrentServerTime,
+  };
 }
-
-
-
