@@ -6,8 +6,8 @@ angular
 function basicInfo(apiService)
 {
     let dayList = ["Sun","Mon", "Tue", "Wed","Thu","Fri","Sat"]
-    let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    
+    let months = ['January','February','March','April','May','June','July','August','September','Octtober','November','December'];
+    let dayInMonth = {'January':31,'February':28,'March':31,'April':30,'May':31,'June':30,'July':31,'August':31,'September':30,'Octtober':31,'November':30,'December':31}
     // let currentDate = apiService.fetchCurrentServerTime();
 
     // currentDate.then((unixTimeStamp)=>
@@ -18,23 +18,29 @@ function basicInfo(apiService)
     //         const month = months[date.getMonth()];            
     //         console.log(year, month, date.getDate(),dayList[date.getDay()])
     //     }
-    function monthlyDetails () {
-
-        const date = new Date();
+    function monthlyDetails (date) {
         const firstDayDate =  new Date(date.getFullYear(), date.getMonth(), 1);
         const lastDayDate = new Date(date.getFullYear(), date.getMonth() + 1);
         let allDetails = 
         {
-            totalDays: new Date(date.getFullYear(),date.getMonth(), 0).getDate(),
+            monthIndex: date.getMonth(),
             month: months[date.getMonth()],
+            totalDays: dayInMonth[months[date.getMonth()]],
             year: date.getFullYear(),
             firstDayName: dayList[firstDayDate.getDay()],
             lastDayName: dayList[lastDayDate.getDay()],
             firstDayIndex: firstDayDate.getDay(),
-            lastDayIndex: lastDayDate.getDay()
+            lastDayIndex: lastDayDate.getDay(),
         }
-        console.log(allDetails)
         return allDetails;
+
+    }
+
+    function unixTimeStampToDate(unixTimeStamp)
+    {
+        unixTimeStamp = unixTimeStamp.time;
+        let date = new Date(unixTimeStamp * 1000).getDate()
+        return date;
 
     }
     
@@ -50,7 +56,9 @@ function basicInfo(apiService)
         {
             allDays: dayList,
             totalCells: 42,
-            montlyDetails: monthlyDetails
+            montlyDetails: monthlyDetails,
+            unixTimeStampToDate: unixTimeStampToDate,
+            allMonths: months
         }
     
     );

@@ -14,16 +14,15 @@
     <div class="jumbotron">
         <h1 class="display-4">Reservation Calendar</h1>
         <hr />
-        <!-- Optional JavaScript -->
     </div>
     <div  ng-controller="calendarController as calendar">
       <div class="container">
         <div class="row">
           <div class="col text-center">
             <div class="btn-group btn-group-lg" role="group" aria-label="Basic example" >
-              <button type="button" class="btn btn-info">Move Left</button>
-              <button type="button" class="btn btn-secondary" disabled>Jan 2020</button>
-              <button type="button" class="btn btn-info">Move Right</button>
+              <button type="button" class="btn btn-info" ng-click="calendar.shiftToPreviousMonth()" >Move Left</button>
+              <button type="button" class="btn btn-secondary" disabled>{{calendar.monthAndYear.MonthLabel}} {{calendar.monthAndYear.Year}}</button>
+              <button type="button" class="btn btn-info" ng-click="calendar.shiftToNextMonth()">Move Right</button>
             </div>          
           </div>
         </div>
@@ -40,61 +39,66 @@
         </div>
         
         <div class="card-group border-primary" style="display: flex; flex-wrap: wrap;" >
-            <div class="card" style="flex: 1 0 13%;" ng-repeat="eachDate in calendar.dateAndPostings" >
-                <div class="card-body" style="background-color: {{eachDate.color}};">
+            <div class="card" style="flex: 1 0 13%;" ng-repeat="eachDate in calendar.dateAndPostings">
+              
+                <div ng-click="calendar.fetchLatestViewModal(eachDate.date)" data-toggle="modal" data-target="#exampleModal" >                
+                <div class="card-body"  style="background-color: {{eachDate.color}};">
                 <h6 class="card-title" style="text-align: center;">{{eachDate.date}}</h6>
-                <p class="card-text" style="text-align: center;">Booked - {{eachDate.tenant}} </p>
+              </div>
+              
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div ng-switch="calendar.reservation.isReserved">
+                      <div ng-switch-when="true">
+                        <p>{{calendar.errors.recordDeletionError}}</p>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Name</span>
+                          </div>
+                          <input type="text"  class="form-control" readonly placeholder="Username" aria-label="Name" aria-describedby="basic-addon1" ng-model="calendar.reservation.name" >
+                        </div>
+                      </div>
+
+                      <div ng-switch-when="false">
+
+                        <p>{{calendar.errors.recordCreationError}}</p>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Name</span>
+                          </div>
+                          <input type="text"  class="form-control" placeholder="Username" aria-label="Name" aria-describedby="basic-addon1" ng-model="calendar.reservation.name" >
+                        </div>                        
+                      </div>
+
+                  </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Date</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Username" aria-label="Name" aria-describedby="basic-addon1" value="{{calendar.reservation.month}} {{calendar.reservation.date}}" disabled>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <div ng-switch="calendar.reservation.isReserved">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button ng-switch-when="true" type="button" class="btn btn-primary" ng-click="calendar.deleteReservation()" >Delete</button>
+                        <button ng-switch-when="false" type="button" class="btn btn-primary"  ng-click="calendar.createReservation()">Save</button>
+                  </div>
+                </div>
               </div>
             </div>
-            <!-- <div class="card" style="flex: 1 0 13%;">
-                <div class="card-body">
-                <h5 class="card-title">30</h5>
-                <p class="card-text">Booked By: Ateeb Ahmed</p>
-              </div>
             </div>
-            <div class="card" style="flex: 1 0 13%;">
-                <div class="card-body">
-                <h5 class="card-title">30</h5>
-                <p class="card-text">Booked By: Ateeb Ahmed</p>
-              </div>
-            </div>
-            <div class="card" style="flex: 1 0 13%;">
-                <div class="card-body">
-                    <h5 class="card-title">30</h5>
-                    <p class="card-text">Booked By: Ateeb Ahmed</p>
-                </div>
-              </div>
-              <div class="card" style="flex: 1 0 13%;">
-                <div class="card-body">
-                    <h5 class="card-title">30</h5>
-                    <p class="card-text">Booked By: Ateeb Ahmed</p>
-                </div>
-              </div>
-              <div class="card" style="flex: 1 0 13%;">
-                <div class="card-body">
-                    <h5 class="card-title">30</h5>
-                    <p class="card-text">Booked By: Ateeb Ahmed</p>
-                </div>
-              </div>
-              <div class="card" style="flex: 1 0 13%;">
-                <div class="card-body">
-                    <h5 class="card-title">30</h5>
-                    <p class="card-text">Booked By: Ateeb Ahmed</p>
-                </div>
-              </div>
-              <div class="card" style="flex: 1 0 13%;">
-                <div class="card-body">
-                    <h5 class="card-title">30</h5>
-                    <p class="card-text">Booked By: Ateeb Ahmed</p>
-                </div>
-              </div>
-              <div class="card" style="flex: 1 0 13%;">
-                <div class="card-body">
-                    <h5 class="card-title">30</h5>
-                    <p class="card-text">Booked By: Ateeb Ahmed</p>
-                </div>
-              </div>
-         -->
+
+
         </div>
 
             
@@ -109,9 +113,11 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.14/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>    
+    <script src="moment-timezone-with-data.min.js"></script>    
     <script src="reservationCalendar.module.js"></script>
     <script  src="reservationCalendar.controller.js"></script>
     <script src="reservationCalendar.factory.js"></script>
-    <script src="api.factory.js"></script>
+        <script src="api.factory.js"></script>
   </footer>
 </html>
