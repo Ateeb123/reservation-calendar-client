@@ -51,7 +51,7 @@ All in all, the client side has three main functionalities:
 	 - package.json
 	 - package-lock.json
 
-### Program Flow
+## Program Flow
 
  - **reservationCalendar.controller.js**
 	 -  Hosts the controller of root module: Reservation_Calendar. 
@@ -73,7 +73,5 @@ All in all, the client side has three main functionalities:
 	 - The Service exposes:
 		 - Function - **fetchCurrentfetchCurrentServerTime** - Requests the current time from the server
 		 - Function - **fetchReservationsfetchReservations** - Requests all reservation in the current month from server 
-		 - Function - **createReservation** - Sends a request to the server accompaned with a json body having information about the soon-to-be-created reservation date and tenant name, to create the reservation by setting the tenant name to the the one supplied and setting the reserved flag to true. 
-		 -  Function - **createReservation** - Sends a request to the server accompaned with a json body having information about the soon-to-be-created reservation date and tenant name, to delete the reservation by resetting the tenant name and setting the reserved flag to false.
-		 
-
+		 - Function - **createReservation** - Sends a request to the server accompanied with a json body having information about the soon-to-be-created reservation date and tenant name, to create the reservation by setting the tenant name to the the one supplied and setting the reserved flag to true. 
+		 -  Function - **createReservation** - Sends a request to the server accompanied with a json body having information about the soon-to-be-created reservation date and tenant name, to delete the reservation by resetting the tenant name and setting the reserved flag to false.
