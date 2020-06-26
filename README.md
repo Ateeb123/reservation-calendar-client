@@ -11,7 +11,7 @@ All in all, the client side has three main functionalities:
 
 # Index
 
- - **Dependencies**# Reservation Client Calendar.
+ - **Dependencies**# Reservation Client Calendar
 
 As its name suggests, this project consists of a client-side interface of a calendar through which a user can reserve a room for a single day. 
 The client-side works in conjunction with the backend API provided by Stellic. The API is responsible for reserving a room, deleting reservations and listing current ones. 
@@ -94,19 +94,6 @@ All in all, the client side has three main functionalities:
 		 - Function - **createReservation** - Sends a request to the server accompanied with a json body having information about the soon-to-be-created reservation date and tenant name, to create the reservation by setting the tenant name to the the one supplied and setting the reserved flag to true. 
 		 -  Function - **createReservation** - Sends a request to the server accompanied with a json body having information about the soon-to-be-created reservation date and tenant name, to delete the reservation by resetting the tenant name and setting the reserved flag to false.
 
-## Existing Bugs
-There is currently on known existing bug. For details, pleas see below. 
-Let's talk about the Calendar Client for June. 
-The Client displays the following dates when we select the month of June: 
-	
-	 - 31st Sunday
-	 - 1st June - 30st June
-	 - 1st July - 11th July
-
-Now, any the creation and deletion of reservations should only work for the days/dates of June when the Calendar is opened for the month of June. For the rest of the dates, belonging to the month of May and July, no reservations can be made because we are not concerned with those months. 
-This is where the bug is. For instance, I'll try to create a reservation for the 2nd July while the Calendar is open for July. What the program will do, since the program assumes that a click on any one of the 42 cells has to do with the month of June given that it is selected in Calendar, is it will reserve a date for the 2nd of June, even though I clicked on 2nd July. 
-This happens because, since June is open, createReservation works under the assumption that a click on any of the cells has to do with June. Hence, a click on the cell that represents 2nd July will be assumed by the function to be representing 2nd June. Hence, it will create a Reservation for that date. 
-
  - **Running the App**
  - **Task Completion Status**
  - **Project Structure**
@@ -170,3 +157,18 @@ This happens because, since June is open, createReservation works under the assu
 		 - Function - **fetchReservationsfetchReservations** - Requests all reservation in the current month from server 
 		 - Function - **createReservation** - Sends a request to the server accompanied with a json body having information about the soon-to-be-created reservation date and tenant name, to create the reservation by setting the tenant name to the the one supplied and setting the reserved flag to true. 
 		 -  Function - **createReservation** - Sends a request to the server accompanied with a json body having information about the soon-to-be-created reservation date and tenant name, to delete the reservation by resetting the tenant name and setting the reserved flag to false.
+		 
+		 
+## Existing Bugs
+There is currently on known existing bug. For details, pleas see below. 
+Let's talk about the Calendar Client for June. 
+The Client displays the following dates when we select the month of June: 
+	
+	 - 31st Sunday
+	 - 1st June - 30st June
+	 - 1st July - 11th July
+
+Now, any the creation and deletion of reservations should only work for the days/dates of June when the Calendar is opened for the month of June. For the rest of the dates, belonging to the month of May and July, no reservations can be made because we are not concerned with those months. 
+This is where the bug is. For instance, I'll try to create a reservation for the 2nd July while the Calendar is open for July. What the program will do, since the program assumes that a click on any one of the 42 cells has to do with the month of June given that it is selected in Calendar, is it will reserve a date for the 2nd of June, even though I clicked on 2nd July. 
+This happens because, since June is open, createReservation works under the assumption that a click on any of the cells has to do with June. Hence, a click on the cell that represents 2nd July will be assumed by the function to be representing 2nd June. Hence, it will create a Reservation for that date. 
+
