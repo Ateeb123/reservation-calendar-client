@@ -95,5 +95,5 @@ This is where the bug is. For instance, I'll try to create a reservation for the
 This happens because, since June is open, createReservation works under the assumption that a click on any of the cells has to do with June. Hence, a click on the cell that represents 2nd July will be assumed by the function to be representing 2nd June. Hence, it will create a Reservation for that date. 
 
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Image of Yaktocat](https://drive.google.com/file/d/1NsCBse4IozqDtQjAK-MKlj-uEABfQx38/view?usp=sharing)
 
